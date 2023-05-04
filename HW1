@@ -1,0 +1,33 @@
+-- 1.	Создайте таблицу с мобильными телефонами, используя графический интерфейс. Заполните БД данными --
+CREATE DATABASE  IF NOT EXISTS HOME_WORK1;
+USE HOME_WORK1;
+
+DROP TABLE IF EXISTS PHONES;
+CREATE TABLE PHONES
+(
+id INT PRIMARY KEY AUTO_INCREMENT,
+MODEL VARCHAR(45) NOT NULL UNIQUE,
+MANUFACTURER VARCHAR(45),
+PRICE INT,
+QUANTITY INT
+);
+
+INSERT PHONES (MODEL,MANUFACTURER,PRICE,QUANTITY)
+VALUES 
+("Galaxy A04s","SAMSUNG","800","20"),
+("Galaxy A03s","SAMSUNG","650","15"),
+("Galaxy A02s","SAMSUNG","450","3"),
+("iPhone 13","APPLE","1000","14"),
+("X4 Pro 5G","POCO","650","48"),
+("X3 Pro 5G","POCO","450","1"),
+("Mate 50 Pro","HUAWEI","450","3");
+
+# 2.	Выведите название, производителя и цену для товаров, количество которых превышает 2 #
+
+SELECT MODEL,MANUFACTURER,PRICE,QUANTITY FROM PHONES
+WHERE QUANTITY >2;
+
+# Выведите весь ассортимент товаров марки “Samsung #
+
+SELECT MODEL,MANUFACTURER,PRICE,QUANTITY FROM PHONES
+WHERE MANUFACTURER = "SAMSUNG";
