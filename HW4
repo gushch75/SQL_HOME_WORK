@@ -55,16 +55,11 @@ JOIN shops
 ON shops.id = cats.shops_id
 WHERE cats.name= "Murzik";
 
-SELECT 
-	shops.shopname as "Название магазина",
-	cats.name as "Имя котика", 
-    cats.id as "ID котика",
-    shops.id as "ID магазина"
-FROM cats 
-JOIN shops
-ON shops.id = cats.shops_id
-WHERE cats.name = "Murzik";
-
+SELECT shopname
+FROM shops
+WHERE id IN (SELECT shops_id   FROM cats
+WHERE name = 'Murzik'
+);
 
 -- 3.Вывести магазины, в которых НЕ продаются коты “Мурзик” и “Zuza”
 
