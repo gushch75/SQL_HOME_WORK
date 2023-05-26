@@ -1,0 +1,59 @@
+CREATE DATABASE  IF NOT EXISTS HOME_WORK6;
+USE HOME_WORK6;
+
+-- 1.Создайте функцию, которая принимает кол-во сек и формат их в кол-во дней часов. --
+-- Пример: 123456 ->'1 days 10 hours 17 minutes 36 seconds ' --
+
+DROP PROCEDURE IF EXISTS transfer_min;
+DELIMITER $$
+CREATE PROCEDURE transfer_min
+(
+input_numbers INT
+)
+
+BEGIN
+DECLARE n INT;
+DECLARE d INT;
+DECLARE h INT;
+DECLARE m INT;
+DECLARE s INT;
+DECLARE result  VARCHAR(45) DEFAULT "";
+SET n = input_numbers;
+
+SET d=FLOOR(n/86400);
+SET h = FLOOR ((n/3600) - (d*24));
+SET m = FLOOR((n/60) - ((d*24*60)+(h*60)));
+SET s = FLOOR( n-((d*86400)+(h*3600)+(m*60)));
+SET result = concat(d," days ",h," hours",m," min",s," sec");
+SELECT result;
+
+END $$
+
+CALL transfer_min (123456);
+
+-- 2.Выведите только четные числа от 1 до 10. --
+-- Пример: 2,4,6,8,10 --
+
+DROP PROCEDURE IF EXISTS evencounts;
+DELIMITER $$
+CREATE PROCEDURE evencounts
+(
+input_numbers INT
+)
+
+BEGIN
+DECLARE n INT;
+DECLARE i INT;
+DECLARE result  VARCHAR(45) DEFAULT "";
+SET n = input_numbers;
+SET i=0;
+REPEAT
+SET i=i+2;
+SET result = concat (result,i,",");
+UNTIL n<=i
+END REPEAT;
+SELECT result AS "Четные числа";
+
+END $$
+
+CALL evencounts (10);
